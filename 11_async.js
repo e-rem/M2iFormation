@@ -11,8 +11,16 @@
  *    - ne pas utiliser async await
  * 
  */
+
+const {sleep} = require("./10_promise.js");
+
 const usingThen = (cb) => {
+    
+    sleep().then((val) => cb(val))
+
 }
+
+usingThen(console.log)
 
 /**
  * Créez une fonction asynchrone qui attend 2 seconde puis execute le callback passé en paramètre
@@ -25,9 +33,12 @@ const usingThen = (cb) => {
  *   - ne pas utiliser .then
  */
 
-const usingAwait = (cb) => {
+const usingAwait = async (cb) =>  (
 
-}
+    await sleep(cb)
+)
+console.log("usingAwait")
+usingAwait(console.log)
 
 /**
  * Créez une fonction asynchrone qui effectue un appel api vers l'url passé en paramètre
@@ -42,11 +53,16 @@ const usingAwait = (cb) => {
  */
 
 //décommentez la ligne suivante une fois le package installé
-//const axios = require("axios");
+const axios = require("axios");
 
-const apiResponse = async (url) => {
-
+const apiResponse = async (url) =>{
+    var response = await axios.get(`https://jsonplaceholder.typicode.com/todos/1`);
+    return response.data;
 }
+
+apiResponse().then( (body) =>
+    console.log(body)
+)
 
 
 module.exports = {usingThen, usingAwait, apiResponse};
