@@ -43,11 +43,12 @@ const filterNameStartByA = (array) =>  array.filter((x) => x.startsWith("A"));
 const sum = (array) => (
 
   array ? array.reduce(
-    (accumulator, currentValue) => accumulator + currentValue
+    (accumulator, currentValue) => accumulator + currentValue,
+    0
   ) : 0
 );
 
-console.log(sum(array1));
+console.log(sum([]));
 /**
  * Utiliser la fonction .find sur le tableau passé en paramètre
  * retourne l'utilisateur qui a l'id passé en 2e paramètre
