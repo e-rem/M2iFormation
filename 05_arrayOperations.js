@@ -42,9 +42,9 @@ const filterNameStartByA = (array) =>  array.filter((x) => x.startsWith("A"));
 
 const sum = (array) => (
 
-  array.reduce(
+  array ? array.reduce(
     (accumulator, currentValue) => accumulator + currentValue
-  )
+  ) : 0
 );
 
 console.log(sum(array1));
